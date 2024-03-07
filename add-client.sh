@@ -19,9 +19,9 @@ a="[Peer]"
 b="PublicKey"
 d="AllowedIPs"
 e=$(cat last-ip.txt)
-echo '' | sudo tee -a /etc/wireguard/wg0.conf
-echo $a |  sudo tee -a /etc/wireguard/wg0.conf
-echo $cmt | sudo tee -a /etc/wireguard/wg0.conf
-echo $d "=" $e/32 | sudo  tee -a /etc/wireguard/wg0.conf
-echo $b "=" $key2 | sudo  tee -a /etc/wireguard/wg0.conf
+echo '' | sudo tee -a /etc/wireguard/labs.conf
+echo $a |  sudo tee -a /etc/wireguard/labs.conf
+echo $cmt | sudo tee -a /etc/wireguard/labs.conf
+echo $d "=" $e/32 | sudo  tee -a /etc/wireguard/labs.conf
+echo $b "=" $key2 | sudo  tee -a /etc/wireguard/labs.conf
 
