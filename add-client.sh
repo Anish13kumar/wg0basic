@@ -8,7 +8,7 @@ wg genkey | tee clients/$peer/$peer.priv | wg pubkey > clients/$peer/$peer.pub
 wg genpsk > clients/$peer/$peer.psk
 key=$(cat clients/$peer/$peer.priv)
 key2=$(cat clients/$peer/$peer.pub)
-ip="172.40.0."$(expr $(cat last-ip.txt | tr "." " " | awk '{print $4}') + 1)
+ip="172.27.0."$(expr $(cat last-ip.txt | tr "." " " | awk '{print $4}') + 1)
 cat wg0-client.example.conf | sed -e 's/:CLIENT_IP:/'"$ip"'/' | sed -e 's|:CLIENT_KEY:|'"$key"'|' | sed -e 's|:PSK_KEY:| '"$psk"'|' > clients/$peer/$peer.conf
 echo $ip > last-ip.txt
 echo $peer > lastpeer.txt
