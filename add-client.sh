@@ -8,7 +8,7 @@ wg genkey | tee clients/$peer/$peer.priv | wg pubkey > clients/$peer/$peer.pub
 wg genpsk > clients/$peer/$peer.psk
 key=$(cat clients/$peer/$peer.priv)
 key2=$(cat clients/$peer/$peer.pub)
-ip="172.30.0."$(expr $(cat last-ip.txt | tr "." " " | awk '{print $4}') + 1)
+ip="172.40.0."$(expr $(cat last-ip.txt | tr "." " " | awk '{print $4}') + 1)
 cat wg0-client.example.conf | sed -e 's/:CLIENT_IP:/'"$ip"'/' | sed -e 's|:CLIENT_KEY:|'"$key"'|' | sed -e 's|:PSK_KEY:| '"$psk"'|' > clients/$peer/$peer.conf
 echo $ip > last-ip.txt
 echo $peer > lastpeer.txt
@@ -19,9 +19,9 @@ a="[Peer]"
 b="PublicKey"
 d="AllowedIPs"
 e=$(cat last-ip.txt)
-echo '' | sudo tee -a /etc/wireguard/labs.conf
-echo $a |  sudo tee -a /etc/wireguard/labs.conf
-echo $cmt | sudo tee -a /etc/wireguard/labs.conf
-echo $d "=" $e/32 | sudo  tee -a /etc/wireguard/labs.conf
-echo $b "=" $key2 | sudo  tee -a /etc/wireguard/labs.conf
+echo '' | sudo tee -a /etc/wireguard/wg0.conf
+echo $a |  sudo tee -a /etc/wireguard/wg0.conf
+echo $cmt | sudo tee -a /etc/wireguard/wg0.conf
+echo $d "=" $e/32 | sudo  tee -a /etc/wireguard/wg0.conf
+echo $b "=" $key2 | sudo  tee -a /etc/wireguard/wg0.conf
 
